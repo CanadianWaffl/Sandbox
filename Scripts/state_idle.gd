@@ -18,4 +18,4 @@ func exit() -> void:
 
 
 func timeout():
-	state_manager.transition_to($"../State-Wander")
+	state_manager.transition_to("Wander")

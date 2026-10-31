@@ -5,6 +5,8 @@ var current_state: State
 
 signal changing_state
 
+var state_dict: Dictionary[String, State] = {}
+
 func _ready() -> void:
 	var initial: State
 	
@@ -13,6 +15,7 @@ func _ready() -> void:
 			if initial == null:
 				initial = child
 			child.state_manager = self
+			state_dict[child.state_name] = child
 	
 	if initial_state:
 		current_state == initial_state
@@ -31,12 +34,14 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_update(delta)
 
 
-func transition_to(new_state: State) -> void:
-	if current_state == new_state:
-		return
+func transition_to(new_state: String) -> void:
+	var ns: State
 	
-	print("Transitioning states from %s to %s" % [current_state.state_name, new_state.state_name])
+	if new_state in state_dict:
+		ns = state_dict[new_state]
+	
+	print("Transitioning states from %s to %s" % [current_state.state_name, new_state])
 	
 	current_state.exit()
-	current_state = new_state
+	current_state = ns
 	current_state.enter()

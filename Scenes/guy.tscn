@@ -91,15 +91,9 @@ script = ExtResource("3_7b8b7")
 script = ExtResource("4_5adle")
 state_name = "Wander"
 
-[node name="WanderTimer" type="Timer" parent="StateManager/State-Wander" unique_id=771231585]
-wait_time = 3.0
-autostart = true
-
 [node name="State-Idle" type="Node" parent="StateManager" unique_id=1830858446]
 script = ExtResource("5_bh7l2")
 state_name = "Idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=509888566]
 libraries/ = SubResource("AnimationLibrary_y13ms")
-
-[connection signal="timeout" from="StateManager/State-Wander/WanderTimer" to="StateManager/State-Wander" method="_on_wander_timer_timeout"]

@@ -1,46 +1,35 @@
 extends State
 
+const WANDER_RANGE: float = 200.0 #If it goes out of this radius it will attempt to return to its 'home position'
+
 const MIN_WANDER: float = 80.0
 const MAX_WANDER: float = 150.0
 
+const MOVESPEED: float = 0.8
+
 var target_pos := Vector2.INF
+var target_dir := Vector2.INF
 
 
 func enter() -> void:
 	owner.find_child("AnimationPlayer").play("wandering")
-	var switch_timer: Timer = Timer.new()
-	add_child(switch_timer)
-	instanced_children.append(switch_timer)
-	switch_timer.timeout.connect(timeout)
-	switch_timer.start(2.0)
-
-
-func exit() -> void:
-	for child in instanced_children:
-		child.queue_free()
-	
-	instanced_children = []
-
-
-func physics_update(delta: float) -> void:
-	if target_pos != Vector2.INF:
-		owner.position = lerp(owner.position, target_pos, 0.03)
-		if owner.position.is_equal_approx(target_pos):
-			target_pos = Vector2.INF
-
-
-func timeout():
-	state_manager.transition_to($"../State-Idle")
-
-
-func _on_wander_timer_timeout() -> void:
-	#Don't change targets if not finished
-	if not target_pos == Vector2.INF:
-		return
 	
 	var rand_angle = randf_range(0, TAU)
 	var rand_dist = randf_range(MIN_WANDER, MAX_WANDER)
 	
-	target_pos = Vector2(owner.position.x + cos(rand_angle)*rand_dist, owner.position.y + sin(rand_angle)*rand_dist)
+	if owner.position.distance_to(owner.return_point) > WANDER_RANGE:
+		print("Too far from home!")
+		target_pos = Vector2(owner.return_point.x + cos(rand_angle)*rand_dist, owner.return_point.y + sin(rand_angle)*rand_dist)
+	else:
+		target_pos = Vector2(owner.position.x + cos(rand_angle)*rand_dist, owner.position.y + sin(rand_angle)*rand_dist)
 	
-	#print("Attempting to wander to (%s, %s)" % [target_pos.x, target_pos.y])
+	target_dir = target_pos - owner.position
+	target_dir = target_dir.normalized()
+
+
+func physics_update(delta: float) -> void:
+	if target_pos != Vector2.INF:
+		owner.position += target_dir * MOVESPEED
+		if owner.position.distance_squared_to(target_pos) < 10: #arbitrary value but seems to work well
+			owner.position == target_pos
+			state_manager.transition_to("Idle")
