@@ -1,21 +1,11 @@
 [gd_scene format=3 uid="uid://bos30qbrgfodt"]
 
-[ext_resource type="Texture2D" uid="uid://cpmab412q20g3" path="res://Assets/Sprites/lil-guy.png" id="1_a02cp"]
-[ext_resource type="Script" uid="uid://cw8n2fq3ejov4" path="res://Scripts/guy.gd" id="1_go701"]
+[ext_resource type="PackedScene" uid="uid://vebheohtg6pp" path="res://Scenes/guy.tscn" id="1_a02cp"]
 
 [node name="World" type="Node2D" unique_id=1924382587]
 
-[node name="Guy" type="CharacterBody2D" parent="." unique_id=1234285740]
+[node name="Guy" parent="." unique_id=1555784624 instance=ExtResource("1_a02cp")]
 position = Vector2(266, 131)
-scale = Vector2(4, 4)
-script = ExtResource("1_go701")
-
-[node name="Sprite2D" type="Sprite2D" parent="Guy" unique_id=1154617815]
-texture = ExtResource("1_a02cp")
-
-[node name="WanderTimer" type="Timer" parent="Guy" unique_id=588028371]
-wait_time = 3.0
-autostart = true
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1395569902]
 layer = -5
@@ -27,5 +17,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.5376251, 0.85, 0.46750003, 1)
-
-[connection signal="timeout" from="Guy/WanderTimer" to="Guy" method="_on_wander_timer_timeout"]

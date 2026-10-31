@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://vebheohtg6pp"]
+
+[ext_resource type="Script" uid="uid://cw8n2fq3ejov4" path="res://Scripts/guy.gd" id="1_y2mbu"]
+[ext_resource type="Texture2D" uid="uid://cpmab412q20g3" path="res://Assets/Sprites/lil-guy.png" id="2_bh7l2"]
+[ext_resource type="Script" uid="uid://c75jgr36ssf1q" path="res://Scripts/state_manager.gd" id="3_7b8b7"]
+[ext_resource type="Script" uid="uid://bemqjfyvvegij" path="res://Scripts/state_wander.gd" id="4_5adle"]
+[ext_resource type="Script" uid="uid://dp7vbfwprhcll" path="res://Scripts/state_idle.gd" id="5_bh7l2"]
+
+[sub_resource type="Animation" id="Animation_7b8b7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bh7l2"]
+resource_name = "idle"
+length = 1.33
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.66, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.17453292, 0.0, -0.17453292]
+}
+
+[sub_resource type="Animation" id="Animation_5adle"]
+resource_name = "wandering"
+length = 0.66
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.33, 0.66),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y13ms"]
+_data = {
+&"RESET": SubResource("Animation_7b8b7"),
+&"idle": SubResource("Animation_bh7l2"),
+&"wandering": SubResource("Animation_5adle")
+}
+
+[node name="Guy" type="CharacterBody2D" unique_id=1555784624]
+scale = Vector2(4, 4)
+script = ExtResource("1_y2mbu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1125398899]
+texture = ExtResource("2_bh7l2")
+offset = Vector2(0.5, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=1484114636]
+
+[node name="StateManager" type="Node" parent="." unique_id=1667593578]
+script = ExtResource("3_7b8b7")
+
+[node name="State-Wander" type="Node" parent="StateManager" unique_id=670422417]
+script = ExtResource("4_5adle")
+state_name = "Wander"
+
+[node name="WanderTimer" type="Timer" parent="StateManager/State-Wander" unique_id=771231585]
+wait_time = 3.0
+autostart = true
+
+[node name="State-Idle" type="Node" parent="StateManager" unique_id=1830858446]
+script = ExtResource("5_bh7l2")
+state_name = "Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=509888566]
+libraries/ = SubResource("AnimationLibrary_y13ms")
+
+[connection signal="timeout" from="StateManager/State-Wander/WanderTimer" to="StateManager/State-Wander" method="_on_wander_timer_timeout"]
