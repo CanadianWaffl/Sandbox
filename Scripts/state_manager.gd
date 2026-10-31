@@ -18,7 +18,7 @@ func _ready() -> void:
 			state_dict[child.state_name] = child
 	
 	if initial_state:
-		current_state == initial_state
+		current_state = initial_state
 	else:
 		current_state = initial
 	current_state.enter()

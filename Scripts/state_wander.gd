@@ -18,7 +18,7 @@ func enter() -> void:
 	var rand_dist = randf_range(MIN_WANDER, MAX_WANDER)
 	
 	if owner.position.distance_to(owner.return_point) > WANDER_RANGE:
-		print("Too far from home!")
+		print("Too far from " + str(owner.return_point))
 		target_pos = Vector2(owner.return_point.x + cos(rand_angle)*rand_dist, owner.return_point.y + sin(rand_angle)*rand_dist)
 	else:
 		target_pos = Vector2(owner.position.x + cos(rand_angle)*rand_dist, owner.position.y + sin(rand_angle)*rand_dist)

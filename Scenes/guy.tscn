@@ -84,8 +84,9 @@ offset = Vector2(0.5, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=1484114636]
 
-[node name="StateManager" type="Node" parent="." unique_id=1667593578]
+[node name="StateManager" type="Node" parent="." unique_id=1667593578 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7b8b7")
+initial_state = NodePath("State-Idle")
 
 [node name="State-Wander" type="Node" parent="StateManager" unique_id=670422417]
 script = ExtResource("4_5adle")
