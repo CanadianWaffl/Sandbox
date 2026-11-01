@@ -40,8 +40,9 @@ func transition_to(new_state: String) -> void:
 	if new_state in state_dict:
 		ns = state_dict[new_state]
 	
-	print("Transitioning states from %s to %s" % [current_state.state_name, new_state])
+	#print("Transitioning states from %s to %s" % [current_state.state_name, new_state])
 	
+	current_state._cleanup()
 	current_state.exit()
 	current_state = ns
 	current_state.enter()

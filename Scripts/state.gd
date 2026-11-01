@@ -11,6 +11,12 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
+func _cleanup() -> void:
+	for child in instanced_children:
+		child.queue_free()
+	
+	instanced_children = []
+
 func update(delta: float) -> void:
 	pass
 

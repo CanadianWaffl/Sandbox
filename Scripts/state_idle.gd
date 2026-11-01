@@ -10,12 +10,5 @@ func enter() -> void:
 	switch_timer.start(2.0)
 
 
-func exit() -> void:
-	for child in instanced_children:
-		child.queue_free()
-	
-	instanced_children = []
-
-
 func timeout():
 	state_manager.transition_to("Wander")

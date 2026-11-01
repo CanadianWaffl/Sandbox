@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bldwahr3dtkoh"]
+
+[ext_resource type="Script" uid="uid://by52nq7tgbpk1" path="res://Scripts/statue.gd" id="1_iuhq3"]
+
+[node name="Statue" type="Node2D" unique_id=1485133094]
+script = ExtResource("1_iuhq3")
+
+[node name="Base" type="Polygon2D" parent="." unique_id=1310783327]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="Top" type="Polygon2D" parent="." unique_id=1343410670]
+polygon = PackedVector2Array(0, -8, 8, 0, 0, 8, -8, 0)

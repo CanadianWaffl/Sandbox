@@ -17,9 +17,9 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_MIDDLE and not event.pressed:
 			moving_camera = false
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			camera.zoom -= Vector2(0.1, 0.1)
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			camera.zoom += Vector2(0.1, 0.1)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			camera.zoom -= Vector2(0.1, 0.1)
 	
 	if event is InputEventMouseMotion and moving_camera:
 		camera.position -= event.relative
