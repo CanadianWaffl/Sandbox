@@ -118,6 +118,8 @@ _data = {
 }
 
 [node name="Guy" type="CharacterBody2D" unique_id=1555784624]
+z_index = 1
+y_sort_enabled = true
 scale = Vector2(4, 4)
 script = ExtResource("1_y2mbu")
 
@@ -128,6 +130,7 @@ offset = Vector2(0.5, 0)
 [node name="Timer" type="Timer" parent="." unique_id=1484114636]
 
 [node name="StateManager" type="Node" parent="." unique_id=1667593578 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
 script = ExtResource("3_7b8b7")
 initial_state = NodePath("State-Idle")
 

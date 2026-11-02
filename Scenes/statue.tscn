@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://by52nq7tgbpk1" path="res://Scripts/statue.gd" id="1_iuhq3"]
 
 [node name="Statue" type="Node2D" unique_id=1485133094]
+y_sort_enabled = true
 script = ExtResource("1_iuhq3")
 
 [node name="Base" type="Polygon2D" parent="." unique_id=1310783327]

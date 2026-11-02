@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://pmruts7l6f0b" path="res://Assets/Sprites/house.png" id="2_3jr7h"]
 
 [node name="House" type="Node2D" unique_id=2124445393]
+z_index = 2
+y_sort_enabled = true
 script = ExtResource("1_n87ef")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1861348300]
