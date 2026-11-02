@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cw8n2fq3ejov4" path="res://Scripts/guy.gd" id="1_y2mbu"]
 [ext_resource type="Texture2D" uid="uid://cpmab412q20g3" path="res://Assets/Sprites/lil-guy.png" id="2_bh7l2"]
-[ext_resource type="Script" uid="uid://c75jgr36ssf1q" path="res://Scripts/state_manager.gd" id="3_7b8b7"]
-[ext_resource type="Script" uid="uid://bemqjfyvvegij" path="res://Scripts/state_wander.gd" id="4_5adle"]
-[ext_resource type="Script" uid="uid://dp7vbfwprhcll" path="res://Scripts/state_idle.gd" id="5_bh7l2"]
-[ext_resource type="Script" uid="uid://dkrmxxi1hkaip" path="res://Scripts/state_build.gd" id="6_7b8b7"]
+[ext_resource type="Script" uid="uid://c75jgr36ssf1q" path="res://Scripts/Entity States/state_manager.gd" id="3_7b8b7"]
+[ext_resource type="Script" uid="uid://bemqjfyvvegij" path="res://Scripts/Entity States/state_wander.gd" id="4_5adle"]
+[ext_resource type="Script" uid="uid://dp7vbfwprhcll" path="res://Scripts/Entity States/state_idle.gd" id="5_bh7l2"]
+[ext_resource type="Script" uid="uid://dkrmxxi1hkaip" path="res://Scripts/Entity States/state_build.gd" id="6_7b8b7"]
 
 [sub_resource type="Animation" id="Animation_7b8b7"]
 length = 0.001

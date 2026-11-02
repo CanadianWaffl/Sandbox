@@ -22,3 +22,7 @@ func update(delta: float) -> void:
 
 func physics_update(delta: float) -> void:
 	pass
+
+func make_child(child: Node) -> void:
+	add_child(child)
+	instanced_children.append(child)

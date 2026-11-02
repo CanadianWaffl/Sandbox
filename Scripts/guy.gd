@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var state_man: StateManager = $StateManager
 @onready var statue := "res://Scenes/statue.tscn"
 
+@export var home: Node2D
+
 var body_col: Color
 
 var return_point: Vector2

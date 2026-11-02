@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://7lt7tny5bu5v"]
+
+[ext_resource type="Script" uid="uid://baprotuefthjy" path="res://Scripts/house.gd" id="1_n87ef"]
+[ext_resource type="Texture2D" uid="uid://pmruts7l6f0b" path="res://Assets/Sprites/house.png" id="2_3jr7h"]
+
+[node name="House" type="Node2D" unique_id=2124445393]
+script = ExtResource("1_n87ef")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1861348300]
+position = Vector2(12, -32)
+scale = Vector2(4, 4)
+texture = ExtResource("2_3jr7h")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1958851742]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
